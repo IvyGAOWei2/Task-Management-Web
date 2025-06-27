@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# build
+build/
+dist/
+
+# logs
+*.log
+
+# env files
+.env*
+
+# project rules
+.cursorrules 
