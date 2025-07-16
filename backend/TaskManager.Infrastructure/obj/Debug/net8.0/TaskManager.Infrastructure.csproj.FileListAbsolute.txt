@@ -1,0 +1,16 @@
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\bin\Debug\net8.0\TaskManager.Infrastructure.deps.json
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\bin\Debug\net8.0\TaskManager.Infrastructure.dll
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\bin\Debug\net8.0\TaskManager.Infrastructure.pdb
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\bin\Debug\net8.0\TaskManager.Core.dll
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\bin\Debug\net8.0\TaskManager.Core.pdb
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.csproj.AssemblyReference.cache
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.AssemblyInfoInputs.cache
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.AssemblyInfo.cs
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.csproj.CoreCompileInputs.cache
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.sourcelink.json
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskMana.DD0CDC6B.Up2Date
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.dll
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\refint\TaskManager.Infrastructure.dll
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\TaskManager.Infrastructure.pdb
+K:\001 Task Management CRUD project\backend\TaskManager.Infrastructure\obj\Debug\net8.0\ref\TaskManager.Infrastructure.dll

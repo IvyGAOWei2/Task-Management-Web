@@ -1,0 +1,12 @@
+K:\001 Task Management CRUD project\backend\TaskManager.Core\bin\Debug\net8.0\TaskManager.Core.deps.json
+K:\001 Task Management CRUD project\backend\TaskManager.Core\bin\Debug\net8.0\TaskManager.Core.dll
+K:\001 Task Management CRUD project\backend\TaskManager.Core\bin\Debug\net8.0\TaskManager.Core.pdb
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\TaskManager.Core.GeneratedMSBuildEditorConfig.editorconfig
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\TaskManager.Core.AssemblyInfoInputs.cache
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\TaskManager.Core.AssemblyInfo.cs
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\TaskManager.Core.csproj.CoreCompileInputs.cache
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\TaskManager.Core.sourcelink.json
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\TaskManager.Core.dll
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\refint\TaskManager.Core.dll
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\TaskManager.Core.pdb
+K:\001 Task Management CRUD project\backend\TaskManager.Core\obj\Debug\net8.0\ref\TaskManager.Core.dll
