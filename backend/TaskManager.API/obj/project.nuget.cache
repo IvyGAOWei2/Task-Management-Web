@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wyCPpZUPPMc=",
+  "dgSpecHash": "47+TLK4eutY=",
   "success": true,
-  "projectFilePath": "K:\\001 Task Management CRUD project\\backend\\TaskManager.API\\TaskManager.API.csproj",
+  "projectFilePath": "K:\\001 Task Management CRUD project\\backend\\Taskmanager.API\\TaskManager.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\anita\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\anita\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.7\\microsoft.aspnetcore.openapi.8.0.7.nupkg.sha512",

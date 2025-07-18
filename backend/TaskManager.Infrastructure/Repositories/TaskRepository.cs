@@ -1,36 +1,54 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TaskManager.Core.Entities;
 using TaskManager.Core.Repositories;
+using TaskManager.Infrastructure.Data;
 
 namespace TaskManager.Infrastructure.Repositories
 {
     public class TaskRepository : ITaskRepository
     {
-        public Task<TaskItem> AddTaskAsync(TaskItem task)
+        private readonly TaskDbContext _context;
+
+        public TaskRepository(TaskDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task DeleteTaskAsync(int id)
+        public async Task<TaskItem> AddTaskAsync(TaskItem task)
         {
-            throw new NotImplementedException();
+            task.CreatedAt = DateTime.UtcNow;
+            _context.Tasks.Add(task);
+            await _context.SaveChangesAsync();
+            return task;
         }
 
-        public Task<IEnumerable<TaskItem>> GetAllTasksAsync()
+        public async Task DeleteTaskAsync(int id)
         {
-            throw new NotImplementedException();
+            var task = await _context.Tasks.FindAsync(id);
+            if (task != null)
+            {
+                _context.Tasks.Remove(task);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public Task<TaskItem> GetTaskByIdAsync(int id)
+        public async Task<IEnumerable<TaskItem>> GetAllTasksAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Tasks.ToListAsync();
         }
 
-        public Task UpdateTaskAsync(TaskItem task)
+        public async Task<TaskItem> GetTaskByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Tasks.FindAsync(id);
+        }
+
+        public async Task UpdateTaskAsync(TaskItem task)
+        {
+            _context.Tasks.Update(task);
+            await _context.SaveChangesAsync();
         }
     }
 } 

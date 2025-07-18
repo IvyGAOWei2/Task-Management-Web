@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "K:\\001 Task Management CRUD project\\backend\\TaskManager.API\\TaskManager.API.csproj": {}
+    "K:\\001 Task Management CRUD project\\backend\\Taskmanager.API\\TaskManager.API.csproj": {}
   },
   "projects": {
-    "K:\\001 Task Management CRUD project\\backend\\TaskManager.API\\TaskManager.API.csproj": {
+    "K:\\001 Task Management CRUD project\\backend\\Taskmanager.API\\TaskManager.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "K:\\001 Task Management CRUD project\\backend\\TaskManager.API\\TaskManager.API.csproj",
+        "projectUniqueName": "K:\\001 Task Management CRUD project\\backend\\Taskmanager.API\\TaskManager.API.csproj",
         "projectName": "TaskManager.API",
-        "projectPath": "K:\\001 Task Management CRUD project\\backend\\TaskManager.API\\TaskManager.API.csproj",
+        "projectPath": "K:\\001 Task Management CRUD project\\backend\\Taskmanager.API\\TaskManager.API.csproj",
         "packagesPath": "C:\\Users\\anita\\.nuget\\packages\\",
-        "outputPath": "K:\\001 Task Management CRUD project\\backend\\TaskManager.API\\obj\\",
+        "outputPath": "K:\\001 Task Management CRUD project\\backend\\Taskmanager.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\anita\\AppData\\Roaming\\NuGet\\NuGet.Config",
