@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Core.Entities;
 using TaskManager.Core.Repositories;
+using TaskManager.Core.DTOs;
 
 namespace TaskManager.API.Controllers
 {
@@ -26,6 +27,20 @@ namespace TaskManager.API.Controllers
             return Ok(tasks);
         }
 
+        // GET: api/task/paged
+        [HttpGet("paged")]
+        public async Task<ActionResult<PagedResult<TaskItem>>> GetTasksPaged([FromQuery] TaskQueryParameters parameters)
+        {
+            if (parameters.Page < 1)
+                parameters.Page = 1;
+            
+            if (parameters.PageSize < 1 || parameters.PageSize > 100)
+                parameters.PageSize = 10;
+
+            var result = await _taskRepository.GetTasksAsync(parameters);
+            return Ok(result);
+        }
+
         // GET: api/task/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TaskItem>> GetTask(int id)
@@ -33,7 +48,7 @@ namespace TaskManager.API.Controllers
             var task = await _taskRepository.GetTaskByIdAsync(id);
             if (task == null)
             {
-                return NotFound();
+                return NotFound($"Task with ID {id} not found");
             }
             return Ok(task);
         }
@@ -42,13 +57,20 @@ namespace TaskManager.API.Controllers
         [HttpPost]
         public async Task<ActionResult<TaskItem>> CreateTask(TaskItem task)
         {
-            if (string.IsNullOrWhiteSpace(task.Title))
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Title is required");
+                return BadRequest(ModelState);
             }
 
-            var createdTask = await _taskRepository.AddTaskAsync(task);
-            return CreatedAtAction(nameof(GetTask), new { id = createdTask.Id }, createdTask);
+            try
+            {
+                var createdTask = await _taskRepository.AddTaskAsync(task);
+                return CreatedAtAction(nameof(GetTask), new { id = createdTask.Id }, createdTask);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         // PUT: api/task/5
@@ -57,22 +79,29 @@ namespace TaskManager.API.Controllers
         {
             if (id != task.Id)
             {
-                return BadRequest();
+                return BadRequest("ID mismatch");
             }
 
-            if (string.IsNullOrWhiteSpace(task.Title))
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Title is required");
+                return BadRequest(ModelState);
             }
 
             var existingTask = await _taskRepository.GetTaskByIdAsync(id);
             if (existingTask == null)
             {
-                return NotFound();
+                return NotFound($"Task with ID {id} not found");
             }
 
-            await _taskRepository.UpdateTaskAsync(task);
-            return NoContent();
+            try
+            {
+                await _taskRepository.UpdateTaskAsync(task);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         // DELETE: api/task/5
@@ -82,11 +111,18 @@ namespace TaskManager.API.Controllers
             var task = await _taskRepository.GetTaskByIdAsync(id);
             if (task == null)
             {
-                return NotFound();
+                return NotFound($"Task with ID {id} not found");
             }
 
-            await _taskRepository.DeleteTaskAsync(id);
-            return NoContent();
+            try
+            {
+                await _taskRepository.DeleteTaskAsync(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
     }
 } 
