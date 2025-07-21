@@ -1,0 +1,29 @@
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Database
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# Entity Framework
+Migrations/
+
+# Configuration
+TaskManager.API/appsettings.Development.json
+
+# Others
