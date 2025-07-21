@@ -1,6 +1,6 @@
 import { PagedResult, TaskItem, TaskQueryParameters } from '@/types/task';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://localhost:7213/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5245/api';
 
 export const getTasks = async (params: TaskQueryParameters): Promise<PagedResult<TaskItem>> => {
   const query = new URLSearchParams();
