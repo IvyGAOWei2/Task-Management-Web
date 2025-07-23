@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { getTasks } from '@/services/api';
 import { TaskItem, PagedResult, TaskQueryParameters } from '@/types/task';
 import TaskList from '@/components/TaskList';
-// import LoadingSpinner from '@/components/LoadingSpinner';
-// import ErrorMessage from '@/components/ErrorMessage';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import ErrorMessage from '@/components/ErrorMessage';
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState<PagedResult<TaskItem> | null>(null);
