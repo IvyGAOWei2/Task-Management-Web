@@ -36,8 +36,8 @@ const TasksPage = () => {
     setQueryParams((prevParams) => ({ ...prevParams, page: newPage }));
   };
 
-  // if (loading) return <LoadingSpinner />;
-  // if (error) return <ErrorMessage message={error} />;
+  if (loading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage message={error} />;
 
   return (
     <div>

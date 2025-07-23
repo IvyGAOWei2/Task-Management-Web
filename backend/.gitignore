@@ -22,5 +22,5 @@ obj/
 
 
 # Configuration
-TaskManager.API/appsettings.Development.json
+# TaskManager.API/appsettings.Development.json
 
