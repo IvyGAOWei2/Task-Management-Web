@@ -33,7 +33,7 @@ namespace TaskManager.API.Controllers
         {
             if (parameters.Page < 1)
                 parameters.Page = 1;
-            
+
             if (parameters.PageSize < 1 || parameters.PageSize > 100)
                 parameters.PageSize = 10;
 
@@ -75,13 +75,8 @@ namespace TaskManager.API.Controllers
 
         // PUT: api/task/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTask(int id, TaskItem task)
+        public async Task<IActionResult> UpdateTask(int id, [FromBody] UpdateTaskDto updateDto)
         {
-            if (id != task.Id)
-            {
-                return BadRequest("ID mismatch");
-            }
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -95,7 +90,15 @@ namespace TaskManager.API.Controllers
 
             try
             {
-                await _taskRepository.UpdateTaskAsync(task);
+                // 更新现有任务的属性
+                existingTask.Title = updateDto.Title;
+                existingTask.Description = updateDto.Description;
+                existingTask.Status = (TaskManager.Core.Enums.TaskStatus)updateDto.Status;
+                existingTask.Priority = updateDto.Priority;
+                existingTask.DueDate = updateDto.DueDate;
+                existingTask.UpdatedAt = DateTime.UtcNow;
+
+                await _taskRepository.UpdateTaskAsync(existingTask);
                 return NoContent();
             }
             catch (Exception ex)
@@ -125,4 +128,4 @@ namespace TaskManager.API.Controllers
             }
         }
     }
-} 
+}
