@@ -46,6 +46,8 @@ export const createTask = async (task: Omit<TaskItem, 'id' | 'createdAt' | 'upda
 };
 
 export const updateTask = async (id: number, task: TaskItem): Promise<void> => {
+  console.log('updateTask called with:', { id, task });
+  
   const response = await fetch(`${API_BASE_URL}/task/${id}`, {
     method: 'PUT',
     headers: {
@@ -54,8 +56,19 @@ export const updateTask = async (id: number, task: TaskItem): Promise<void> => {
     body: JSON.stringify(task),
   });
 
+  console.log('Response status:', response.status);
+  console.log('Response headers:', response.headers);
+  
   if (!response.ok) {
-    throw new Error('Failed to update task');
+    let errorMessage = 'Failed to update task';
+    try {
+      const errorData = await response.text();
+      console.log('Error response body:', errorData);
+      errorMessage += `: ${errorData}`;
+    } catch (e) {
+      console.log('Could not parse error response');
+    }
+    throw new Error(errorMessage);
   }
 };
 
