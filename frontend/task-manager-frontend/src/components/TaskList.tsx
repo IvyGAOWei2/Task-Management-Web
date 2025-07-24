@@ -29,9 +29,10 @@ const getPriorityText = (priority: number) => {
 
 interface TaskListProps {
   tasks: TaskItem[];
+  onDelete: (id: number) => void; 
 }
 
-const TaskList = ({ tasks }: TaskListProps) => (
+const TaskList = ({ tasks, onDelete  }: TaskListProps) => (
   <div className="bg-white shadow-md rounded-lg overflow-hidden">
     <table className="min-w-full divide-y divide-gray-200">
       <thead className="bg-gray-50">
@@ -64,7 +65,13 @@ const TaskList = ({ tasks }: TaskListProps) => (
               <Link href={`/tasks/${task.id}/edit`} className="text-indigo-600 hover:text-indigo-900 mr-4">
                 Edit
               </Link>
-              {/* TODO: Add delete functionality */}
+              <button
+                onClick={() => onDelete(task.id)}
+                className="text-red-600 hover:text-red-900"
+              >
+                Delete
+              </button>
+
             </td>
           </tr>
         ))}
