@@ -1,12 +1,14 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TaskItem, TaskStatus } from '@/types/task';
-import { createTask } from '@/services/api';
+import { createTask, updateTask } from '@/services/api';
 import { useRouter } from 'next/navigation';
 import ErrorMessage from './ErrorMessage';
 
 interface TaskFormProps {
-  onSuccess?: (task: TaskItem) => void;
+  initialValues?: Partial<TaskItem>;
+  onSubmit?: (values: Omit<TaskItem, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
+  onSuccess?: () => void;
+  isEdit?: boolean;
 }
 
 const defaultForm = {
@@ -17,11 +19,28 @@ const defaultForm = {
   dueDate: '',
 };
 
-const TaskForm: React.FC<TaskFormProps> = ({ onSuccess }) => {
-  const [form, setForm] = useState(defaultForm);
+const TaskForm: React.FC<TaskFormProps> = ({ 
+  initialValues, 
+  onSubmit, 
+  onSuccess, 
+  isEdit = false
+}) => {
+  const [form, setForm] = useState({ ...defaultForm, ...initialValues });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (initialValues) {
+      const formattedValues = {
+        ...initialValues,
+        dueDate: initialValues.dueDate 
+          ? new Date(initialValues.dueDate).toISOString().split('T')[0]
+          : ''
+      };
+      setForm({ ...defaultForm, ...formattedValues });
+    }
+  }, [initialValues]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -37,12 +56,15 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSuccess }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    
     const validationError = validate();
     if (validationError) {
       setError(validationError);
       return;
     }
+    
     setLoading(true);
+    
     try {
       const payload = {
         ...form,
@@ -50,11 +72,19 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSuccess }) => {
         status: Number(form.status),
         dueDate: form.dueDate ? new Date(form.dueDate).toISOString() : undefined,
       };
-      const task = await createTask(payload as any);
-      if (onSuccess) onSuccess(task);
-      else router.push(`/tasks/${task.id}`);
+
+      if (onSubmit) {
+        await onSubmit(payload);
+      } else {
+        await createTask(payload);
+      }
+      
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (err) {
-      setError('Failed to create task.');
+      console.error('Task operation failed:', err);
+      setError(isEdit ? 'Failed to update task.' : 'Failed to create task.');
     } finally {
       setLoading(false);
     }
@@ -128,10 +158,10 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSuccess }) => {
         className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition disabled:opacity-60"
         disabled={loading}
       >
-        {loading ? 'Creating...' : 'Create Task'}
+        {loading ? (isEdit ? 'Saving...' : 'Creating...') : (isEdit ? 'Save Changes' : 'Create Task')}
       </button>
     </form>
   );
-};
+}
 
 export default TaskForm;

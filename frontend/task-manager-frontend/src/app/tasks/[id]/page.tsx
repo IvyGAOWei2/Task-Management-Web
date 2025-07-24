@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getTask } from '@/services/api';
+import { getTask, updateTask } from '@/services/api';
 import { TaskItem, TaskStatus } from '@/types/task';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import ErrorMessage from '@/components/ErrorMessage';
